@@ -52,7 +52,8 @@ void MX_USART1_UART_Init(void)
   LL_GPIO_Init(U1TX_GPIO_Port, &GPIO_InitStruct);
 
   GPIO_InitStruct.Pin = sBUS_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
   LL_GPIO_Init(sBUS_GPIO_Port, &GPIO_InitStruct);
 
   /* USART1 interrupt Init */
@@ -105,7 +106,8 @@ void MX_USART2_UART_Init(void)
   LL_GPIO_Init(LOG_OUT_GPIO_Port, &GPIO_InitStruct);
 
   GPIO_InitStruct.Pin = U2RX_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
   LL_GPIO_Init(U2RX_GPIO_Port, &GPIO_InitStruct);
 
   /* USART2 interrupt Init */

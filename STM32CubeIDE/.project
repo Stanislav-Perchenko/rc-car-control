@@ -51,11 +51,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Src/main.c</locationURI>
 		</link>
 		<link>
-			<name>Application/User/rtc.c</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Src/rtc.c</locationURI>
-		</link>
-		<link>
 			<name>Application/User/stm32f1xx_it.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Src/stm32f1xx_it.c</locationURI>
@@ -99,11 +94,6 @@
 			<name>Drivers/STM32F1xx_HAL_Driver/stm32f1xx_ll_rcc.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32F1xx_HAL_Driver/stm32f1xx_ll_rtc.c</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rtc.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/STM32F1xx_HAL_Driver/stm32f1xx_ll_tim.c</name>

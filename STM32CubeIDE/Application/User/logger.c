@@ -8,7 +8,7 @@
 #include "systick.h"
 #include "stm32f1xx_ll_usart.h"
 
-#define USART_LOG USART1
+#define USART_LOG USART2
 
 static uint8_t log_tx_buffer[MAX_LOG_MESSAGE_LENGTH];
 static uint16_t log_tx_data_len;

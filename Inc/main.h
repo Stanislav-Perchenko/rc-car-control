@@ -38,7 +38,6 @@ extern "C" {
 #include "stm32f1xx_ll_utils.h"
 #include "stm32f1xx_ll_pwr.h"
 #include "stm32f1xx_ll_dma.h"
-#include "stm32f1xx_ll_rtc.h"
 #include "stm32f1xx_ll_tim.h"
 #include "stm32f1xx_ll_usart.h"
 #include "stm32f1xx_ll_gpio.h"
@@ -93,8 +92,6 @@ void Error_Handler(void);
 #define PWM_CAM_PITCH_GPIO_Port GPIOB
 #define OUT1_Pin LL_GPIO_PIN_13
 #define OUT1_GPIO_Port GPIOB
-#define CLK_24MHZ_OUT_Pin LL_GPIO_PIN_8
-#define CLK_24MHZ_OUT_GPIO_Port GPIOA
 #define U1TX_Pin LL_GPIO_PIN_9
 #define U1TX_GPIO_Port GPIOA
 #define sBUS_Pin LL_GPIO_PIN_10
