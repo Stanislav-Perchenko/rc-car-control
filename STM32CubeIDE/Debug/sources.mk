@@ -23,5 +23,6 @@ SUBDIRS := \
 Application/Startup \
 Application/User \
 Drivers/CMSIS \
+Drivers/STM32F10x_StdPeriph_Driver/src \
 Drivers/STM32F1xx_HAL_Driver \
 

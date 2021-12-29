@@ -75,6 +75,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Board_LED_Pin LL_GPIO_PIN_13
+#define Board_LED_GPIO_Port GPIOC
 #define LOG_OUT_Pin LL_GPIO_PIN_2
 #define LOG_OUT_GPIO_Port GPIOA
 #define U2RX_Pin LL_GPIO_PIN_3

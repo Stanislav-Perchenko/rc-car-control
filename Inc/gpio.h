@@ -38,6 +38,8 @@ extern "C" {
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void GPIO_BOARD_Led_ON(void);
+void GPIO_BOARD_Led_OFF(void);
 
 /* USER CODE END Prototypes */
 

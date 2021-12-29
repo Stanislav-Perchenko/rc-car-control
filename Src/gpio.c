@@ -53,15 +53,20 @@ void MX_GPIO_Init(void)
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
 
   /**/
+  LL_GPIO_ResetOutputPin(Board_LED_GPIO_Port, Board_LED_Pin);
+
+  /**/
   LL_GPIO_ResetOutputPin(F_R_GPIO_Port, F_R_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(OUT1_GPIO_Port, OUT1_Pin);
 
   /**/
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_13;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ANALOG;
-  LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_InitStruct.Pin = Board_LED_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_MEDIUM;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  LL_GPIO_Init(Board_LED_GPIO_Port, &GPIO_InitStruct);
 
   /**/
   GPIO_InitStruct.Pin = LL_GPIO_PIN_0|LL_GPIO_PIN_1|LL_GPIO_PIN_4|LL_GPIO_PIN_11
@@ -101,7 +106,15 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+void GPIO_BOARD_Led_ON(void)
+{
+	LL_GPIO_ResetOutputPin(Board_LED_GPIO_Port, Board_LED_Pin);
+}
 
+void GPIO_BOARD_Led_OFF(void)
+{
+	LL_GPIO_SetOutputPin(Board_LED_GPIO_Port, Board_LED_Pin);
+}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

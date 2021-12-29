@@ -51,7 +51,9 @@ void MX_IWDG_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
-
+void MX_IWDG_Reset(void) {
+	LL_IWDG_ReloadCounter(IWDG);
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

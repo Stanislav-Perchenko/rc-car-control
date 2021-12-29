@@ -39,7 +39,10 @@ void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void USART1_RX_Callback(void);
+void USART1_TX_Callback(void);
+void USART2_RX_Callback(void);
+void USART2_TX_Callback(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

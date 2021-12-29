@@ -21,7 +21,7 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "stm32f1xx_hal_def.h"
 /* USER CODE END 0 */
 
 /* USART1 init function */
@@ -132,7 +132,25 @@ void MX_USART2_UART_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
+__weak void USART1_RX_Callback(void)
+{
+	// Override this
+}
 
+__weak void USART1_TX_Callback(void)
+{
+	// Override this
+}
+
+__weak void USART2_RX_Callback(void)
+{
+	// Override this
+}
+
+__weak void USART2_TX_Callback(void)
+{
+	// Override this
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
