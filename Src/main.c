@@ -154,6 +154,10 @@ int main(void)
   SYS_IncTick();
   SYS_IncTick();
   SYS_ResumeTick();
+
+  /* Unlock the Flash Program Erase controller */
+    FLASH_Unlock();
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -165,7 +169,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   EE_Init(EepromAllVirtAddrTable, TOTAL_EEPROM_DATA_SIZE);		// EEPROM Init
-    LOG_ResetLogger();											// Logger Init
+    LOG_ResetLogger(USART_LOG);											// Logger Init
     GPIO_BOARD_Led_OFF();
 
     uint16_t counter = 0;
@@ -202,10 +206,11 @@ int main(void)
   while (1)
   {
 	  counter ++;
-	  	  ee_result_code = EE_WriteVariable(COUNTER_ADDRESS, counter);
+	  ee_result_code = EE_WriteVariable(COUNTER_ADDRESS, counter);
 
-	  	  n_bytes = sprintf((char *)log_buffer, "\r\nCounter = %d, write status = %d", counter, ee_result_code);
-	  	  LOG_SendLog(log_buffer, 0, n_bytes);
+	  n_bytes = sprintf((char *)log_buffer, "\r\nCounter = %d, write status = %d", counter, ee_result_code);
+	  LOG_SendLog(log_buffer, 0, n_bytes);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -276,7 +281,7 @@ void USART2_TX_Callback(void)
 {
 	LOG_EvaluateDataSend();
 	if(!LOG_IsInProgress()) {
-		LL_USART_DisableIT_TXE(USART2);
+		LL_USART_DisableIT_TXE(USART_LOG);
 	}
 }
 /* USER CODE END 4 */

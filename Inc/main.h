@@ -92,6 +92,8 @@ void Error_Handler(void);
 #define PWM_CAM_PITCH_GPIO_Port GPIOB
 #define OUT1_Pin LL_GPIO_PIN_13
 #define OUT1_GPIO_Port GPIOB
+#define CLK_24MHZ_OUT_Pin LL_GPIO_PIN_8
+#define CLK_24MHZ_OUT_GPIO_Port GPIOA
 #define U1TX_Pin LL_GPIO_PIN_9
 #define U1TX_GPIO_Port GPIOA
 #define sBUS_Pin LL_GPIO_PIN_10
@@ -109,6 +111,8 @@ void Error_Handler(void);
                                                                  0 bit  for subpriority */
 #endif
 /* USER CODE BEGIN Private defines */
+
+#define USART_LOG	USART2
 
 /* USER CODE END Private defines */
 

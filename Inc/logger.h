@@ -13,10 +13,11 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "stm32f1xx.h"
 
 #define MAX_LOG_MESSAGE_LENGTH	350
 
-void LOG_ResetLogger(void);
+void LOG_ResetLogger(USART_TypeDef *usart);
 uint8_t LOG_IsInProgress(void);
 uint32_t LOG_GetTimeLastLogFinished(void);
 void LOG_SendLog(uint8_t *data, uint16_t offsed, uint16_t n_bytes);
