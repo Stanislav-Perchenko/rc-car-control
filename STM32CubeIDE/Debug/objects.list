@@ -4,6 +4,7 @@
 "./Application/User/iwdg.o"
 "./Application/User/logger.o"
 "./Application/User/main.o"
+"./Application/User/sbus.o"
 "./Application/User/stm32f1xx_it.o"
 "./Application/User/syscalls.o"
 "./Application/User/sysmem.o"

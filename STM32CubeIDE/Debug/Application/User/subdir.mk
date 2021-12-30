@@ -10,6 +10,7 @@ C:/ST/projects/rc-car-control/Src/gpio.c \
 C:/ST/projects/rc-car-control/Src/iwdg.c \
 ../Application/User/logger.c \
 C:/ST/projects/rc-car-control/Src/main.c \
+../Application/User/sbus.c \
 C:/ST/projects/rc-car-control/Src/stm32f1xx_it.c \
 ../Application/User/syscalls.c \
 ../Application/User/sysmem.c \
@@ -23,6 +24,7 @@ OBJS += \
 ./Application/User/iwdg.o \
 ./Application/User/logger.o \
 ./Application/User/main.o \
+./Application/User/sbus.o \
 ./Application/User/stm32f1xx_it.o \
 ./Application/User/syscalls.o \
 ./Application/User/sysmem.o \
@@ -36,6 +38,7 @@ C_DEPS += \
 ./Application/User/iwdg.d \
 ./Application/User/logger.d \
 ./Application/User/main.d \
+./Application/User/sbus.d \
 ./Application/User/stm32f1xx_it.d \
 ./Application/User/syscalls.d \
 ./Application/User/sysmem.d \
