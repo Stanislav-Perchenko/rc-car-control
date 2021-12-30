@@ -11,23 +11,27 @@
 #define USART_LOG USART2
 
 static USART_TypeDef *usart_log;
-static uint8_t log_tx_buffer[MAX_LOG_MESSAGE_LENGTH];
-static uint16_t log_tx_data_len;
-static uint16_t log_tx_next_byte_index;
+static uint8_t log_tx_buffer[LOG_BUFFER_SIZE];
+
+static uint16_t data_length;
+static uint16_t start_index;
+
 static uint32_t log_tx_time_finished;
+
+static void AddLogDataByte(uint8_t data_byte);
 
 
 void LOG_ResetLogger(USART_TypeDef *usart)
 {
 	usart_log = usart;
-	log_tx_data_len = 0;
-	log_tx_next_byte_index = 0;
+	start_index = 0;
+	data_length = 0;
 	log_tx_time_finished = SYS_GetTick() + 1;
 }
 
 uint8_t LOG_IsInProgress(void)
 {
-	return (log_tx_data_len > 0);
+	return (data_length > 0);
 }
 
 
@@ -39,53 +43,60 @@ uint32_t LOG_GetTimeLastLogFinished(void)
 
 void LOG_SendLog(uint8_t *data, uint16_t offset, uint16_t n_bytes)
 {
-	uint16_t index = 0;
-	uint16_t length = (n_bytes < MAX_LOG_MESSAGE_LENGTH) ? n_bytes : MAX_LOG_MESSAGE_LENGTH;
+	if (!usart_log || (n_bytes == 0) || (data_length >= LOG_BUFFER_SIZE)) return;
 
-	if (!usart_log) return;
+	LL_USART_DisableIT_TXE(usart_log);
 
-	log_tx_data_len = length;
-	log_tx_next_byte_index = 0;
-	if (length > 0) {
-		do {
-			log_tx_buffer[index ++] = data[offset ++];
-		} while (index < length);
-		LOG_EvaluateDataSend();
-		LL_USART_EnableIT_TXE(usart_log);
-	}
+
+	do {
+		AddLogDataByte(data[offset ++]);
+		n_bytes --;
+	} while((n_bytes > 0) && (data_length < LOG_BUFFER_SIZE));
+
+
+	LOG_EvaluateDataSend();
+	LL_USART_EnableIT_TXE(usart_log);
+
 
 }
 
-
-uint8_t LOG_EvaluateDataSend(void)
+static void AddLogDataByte(uint8_t data_byte)
 {
-	uint8_t ret = 0;
-	if (!usart_log)
+	uint16_t next_index;
+	if (data_length < LOG_BUFFER_SIZE)
 	{
-		return ret;
+		next_index = start_index + data_length;
+		if (next_index >= LOG_BUFFER_SIZE) {
+			next_index -= LOG_BUFFER_SIZE;
+		}
+
+		log_tx_buffer[next_index] = data_byte;
+		data_length ++;
 	}
-	else if (log_tx_data_len == 0)
+}
+
+
+void LOG_EvaluateDataSend(void)
+{
+	uint8_t byte_to_send;
+
+	if (!usart_log || (data_length == 0) || !LL_USART_IsActiveFlag_TXE(usart_log))
 	{
-		return ret;
-	}
-	else if (!LL_USART_IsActiveFlag_TXE(usart_log))
-	{
-		return ret;
+		return;
 	}
 
-	if (log_tx_next_byte_index < log_tx_data_len)
-	{
-		LL_USART_TransmitData8(usart_log, log_tx_buffer[log_tx_next_byte_index]);
-		log_tx_next_byte_index ++;
+
+	byte_to_send = log_tx_buffer[start_index ++];
+	if (start_index == LOG_BUFFER_SIZE) {
+		start_index = 0;
 	}
-	else
-	{
-		log_tx_data_len = 0;
-		log_tx_next_byte_index = 0;
+	data_length --;
+
+	LL_USART_TransmitData8(usart_log, byte_to_send);
+
+	if (data_length == 0) {
 		log_tx_time_finished = SYS_GetTick();
-		ret = 1;
 	}
-	return ret;
 }
 
 

@@ -57,7 +57,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint8_t log_buffer[MAX_LOG_MESSAGE_LENGTH-16];
+static uint8_t log_buffer[120];
 
 /* Virtual address defined by the user: 0xFFFF value is prohibited */
 uint16_t EepromAllVirtAddrTable[TOTAL_EEPROM_DATA_SIZE];
@@ -198,6 +198,53 @@ int main(void)
     LOG_SendLog(log_buffer, 0, n_bytes);
     SYS_Delay(250);
     MX_IWDG_Reset();
+
+
+
+    uint16_t ccc;
+
+    for (ccc=0; ccc < 500; ccc ++) {
+    	n_bytes = sprintf((char *)log_buffer, "Testttttttt stringg - %d, \r\n", ccc);
+    	LOG_SendLog(log_buffer, 0, n_bytes);
+    	SYS_Delay(3);
+    	MX_IWDG_Reset();
+    }
+
+
+    SYS_Delay(250);
+    n_bytes = sprintf((char *)log_buffer, "\r\n\n----------------------------------------------------------");
+    LOG_SendLog(log_buffer, 0, n_bytes);
+    SYS_Delay(100);
+
+
+    for (ccc=0; ccc < 500; ccc ++) {
+    	n_bytes = sprintf((char *)log_buffer, "Testtttttt stringggg - %d,  \r\n", ccc);
+    	LOG_SendLog(log_buffer, 0, n_bytes);
+    	SYS_Delay(3);
+    	MX_IWDG_Reset();
+    }
+
+    SYS_Delay(250);
+    n_bytes = sprintf((char *)log_buffer, "\r\n\n----------------------------------------------------------");
+    LOG_SendLog(log_buffer, 0, n_bytes);
+    SYS_Delay(100);
+
+    for (ccc=0; ccc < 500; ccc ++) {
+    	n_bytes = sprintf((char *)log_buffer, "Testtttttt stringggg - %d,  \r\n", ccc);
+    	LOG_SendLog(log_buffer, 0, n_bytes);
+    	SYS_Delay(3);
+    	MX_IWDG_Reset();
+    }
+    SYS_Delay(250);
+    n_bytes = sprintf((char *)log_buffer, "\r\n\n----------------------------------------------------------");
+    LOG_SendLog(log_buffer, 0, n_bytes);
+    SYS_Delay(100);
+
+
+
+
+
+
 
   /* USER CODE END 2 */
 

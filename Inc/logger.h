@@ -15,14 +15,17 @@ extern "C" {
 #include <stdint.h>
 #include "stm32f1xx.h"
 
-#define MAX_LOG_MESSAGE_LENGTH	350
+#define LOG_BUFFER_SIZE		((uint16_t) 460)
 
 void LOG_ResetLogger(USART_TypeDef *usart);
+
 uint8_t LOG_IsInProgress(void);
+
 uint32_t LOG_GetTimeLastLogFinished(void);
+
 void LOG_SendLog(uint8_t *data, uint16_t offsed, uint16_t n_bytes);
 
-uint8_t LOG_EvaluateDataSend(void);
+void LOG_EvaluateDataSend(void);
 
 
 #ifdef __cplusplus
