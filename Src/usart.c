@@ -52,8 +52,7 @@ void MX_USART1_UART_Init(void)
   LL_GPIO_Init(U1TX_GPIO_Port, &GPIO_InitStruct);
 
   GPIO_InitStruct.Pin = sBUS_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
   LL_GPIO_Init(sBUS_GPIO_Port, &GPIO_InitStruct);
 
   /* USART1 interrupt Init */
@@ -74,6 +73,9 @@ void MX_USART1_UART_Init(void)
   LL_USART_ConfigAsyncMode(USART1);
   LL_USART_Enable(USART1);
   /* USER CODE BEGIN USART1_Init 2 */
+
+  LL_USART_EnableIT_RXNE(USART1);
+  LL_USART_EnableIT_ERROR(USART1);
 
   /* USER CODE END USART1_Init 2 */
 

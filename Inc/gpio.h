@@ -41,6 +41,8 @@ void MX_GPIO_Init(void);
 void GPIO_BOARD_Led_ON(void);
 void GPIO_BOARD_Led_OFF(void);
 
+uint8_t GPIO_IsCalibrationON(void);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -92,12 +92,12 @@ void Error_Handler(void);
 #define PWM_CAM_PITCH_GPIO_Port GPIOB
 #define OUT1_Pin LL_GPIO_PIN_13
 #define OUT1_GPIO_Port GPIOB
-#define CLK_24MHZ_OUT_Pin LL_GPIO_PIN_8
-#define CLK_24MHZ_OUT_GPIO_Port GPIOA
 #define U1TX_Pin LL_GPIO_PIN_9
 #define U1TX_GPIO_Port GPIOA
 #define sBUS_Pin LL_GPIO_PIN_10
 #define sBUS_GPIO_Port GPIOA
+#define CALIBRATE_Pin LL_GPIO_PIN_9
+#define CALIBRATE_GPIO_Port GPIOB
 #ifndef NVIC_PRIORITYGROUP_0
 #define NVIC_PRIORITYGROUP_0         ((uint32_t)0x00000007) /*!< 0 bit  for pre-emption priority,
                                                                  4 bits for subpriority */
@@ -113,6 +113,16 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 
 #define USART_LOG	USART2
+
+#define SBUS_CH_NUM_THROTTLE	3
+#define SBUS_CH_NUM_RUDDER		4
+#define SBUS_CH_NUM_CAM_YAW		1
+#define SBUS_CH_NUM_CAM_PITCH	2
+#define SBUS_CH_NUM_OUT1		6
+
+#define ABS_MIN_CHANNEL_VALUE_FOR_CALIBRATION		150
+#define ABS_MAX_CHANNEL_VALUE_FOR_CALIBRATION		2150
+#define CLIP_CENTER_PROTECTION_INTERVAL_PERCENT		6
 
 /* USER CODE END Private defines */
 
